@@ -80,7 +80,7 @@ for await (const doc of documents) {
     } catch (e) {
       console.log(
         documentIndex,
-        `Failed to fetch image from document: ${url} (${e.toString()})`
+        `Failed to fetch image: ${url} (${e.toString()})`
       );
     }
   }
