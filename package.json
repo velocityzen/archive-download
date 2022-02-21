@@ -1,0 +1,13 @@
+{
+  "name": "gov-image-downloader",
+  "description": "acrhives.gov image downloader",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "fsu": "^2.0.2",
+    "got": "^12.0.1",
+    "minimist": "^1.2.5",
+    "mkdirp": "^1.0.4"
+  }
+}
