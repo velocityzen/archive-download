@@ -16,21 +16,21 @@ import parseArgv from "./cli.js";
 const pipeline = promisify(stream.pipeline);
 
 async function saveFile(urlString, destination) {
-	const url = new URL(urlString);
-	const { name, ext } = path.parse(url.pathname);
+  const url = new URL(urlString);
+  const { name, ext } = path.parse(url.pathname);
 
-	return pipeline(
-		got.stream(url),
-		createWriteStream(path.join(`${destination}`, `${name}${ext}`))
-		// fsu.createWriteStreamUnique(
-		// 	path.join(`${destination}`, `${name}{-##}${ext}`),
-		// 	{ force: true }
-		// )
-	);
+  return pipeline(
+    got.stream(url),
+    createWriteStream(path.join(`${destination}`, `${name}${ext}`))
+    // fsu.createWriteStreamUnique(
+    //  path.join(`${destination}`, `${name}{-##}${ext}`),
+    //  { force: true }
+    // )
+  );
 }
 
 const { sourceFile, destination, sourceDocumentIndex } = parseArgv(
-	process.argv
+  process.argv
 );
 
 console.log(`Parsing ${sourceFile}...`);
@@ -46,49 +46,49 @@ const downloadedUrls = new Set();
 await mkdirp(destination);
 
 for await (const doc of documents) {
-	const { title, documentIndex, objects } = doc;
+  const { title, documentIndex, objects } = doc;
 
-	if (
-		sourceDocumentIndex !== undefined &&
-		documentIndex !== sourceDocumentIndex
-	) {
-		continue;
-	}
+  if (
+    sourceDocumentIndex !== undefined &&
+    documentIndex !== sourceDocumentIndex
+  ) {
+    continue;
+  }
 
-	if (!objects) {
-		console.log(documentIndex, "No objects attached");
-		continue;
-	}
+  if (!objects) {
+    console.log(documentIndex, "No objects attached");
+    continue;
+  }
 
-	const files = getFiles(objects);
-	if (!files.length) {
-		console.log(documentIndex, `Files not found`, objects);
-		continue;
-	}
+  const files = getFiles(objects);
+  if (!files.length) {
+    console.log(documentIndex, `Files not found`, objects);
+    continue;
+  }
 
-	for await (const file of files) {
-		const url = findFileUrl(file);
+  for await (const file of files) {
+    const url = findFileUrl(file);
 
-		if (!url) {
-			continue;
-		}
+    if (!url) {
+      continue;
+    }
 
-		if (downloadedUrls.has(url)) {
-			console.log(documentIndex, "Duplicate URL", url);
-			continue;
-		}
+    if (downloadedUrls.has(url)) {
+      console.log(documentIndex, "Duplicate URL", url);
+      continue;
+    }
 
-		try {
-			console.log(documentIndex, url);
-			await saveFile(url, destination);
-			downloadedUrls.add(url);
-		} catch (e) {
-			console.log(
-				documentIndex,
-				`Failed to fetch image from document: ${url} (${e.toString()})`
-			);
-		}
-	}
+    try {
+      console.log(documentIndex, url);
+      await saveFile(url, destination);
+      downloadedUrls.add(url);
+    } catch (e) {
+      console.log(
+        documentIndex,
+        `Failed to fetch image from document: ${url} (${e.toString()})`
+      );
+    }
+  }
 }
 
 console.log("✅");
