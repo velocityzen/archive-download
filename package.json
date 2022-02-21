@@ -1,9 +1,13 @@
 {
-  "name": "gov-image-downloader",
-  "description": "acrhives.gov image downloader",
+  "name": "archive-download",
+  "description": "acrhives.gov downloader",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
+  "bin": {
+    "archive-download": "./download.js",
+  }
+  "repository": "velocityzen/archive-download",
   "dependencies": {
     "got": "^12.0.1",
     "minimist": "^1.2.5",
