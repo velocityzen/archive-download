@@ -14,9 +14,9 @@ Go to [catalog.archives.org](https://catalog.archives.gov), use search to find w
 2. check "Top 10000 Results"
 3. click export
 4. select
-  - Descriptions:Brief
-  - Include Thumbnails? Yes,
-  - Export Format: json
+    - Descriptions:Brief
+    - Include Thumbnails? Yes,
+    - Export Format: json
 5. After you download a json file (it might be in archive, so do not forget to unpack it):
 
 `archive-download <path/to/export.json>`
