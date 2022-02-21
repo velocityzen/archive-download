@@ -7,7 +7,6 @@ import path from "path";
 import { URL } from "url";
 
 import got from "got";
-// import fsu from "fsu";
 import mkdirp from "mkdirp";
 
 import { getFiles, findFileUrl, logSeries } from "./document.js";
@@ -22,10 +21,6 @@ async function saveFile(urlString, destination) {
   return pipeline(
     got.stream(url),
     createWriteStream(path.join(`${destination}`, `${name}${ext}`))
-    // fsu.createWriteStreamUnique(
-    //  path.join(`${destination}`, `${name}{-##}${ext}`),
-    //  { force: true }
-    // )
   );
 }
 
