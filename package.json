@@ -5,8 +5,8 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "archive-download": "./download.js",
-  }
+    "archive-download": "./download.js"
+  },
   "repository": "velocityzen/archive-download",
   "dependencies": {
     "got": "^12.0.1",
