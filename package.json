@@ -1,5 +1,5 @@
 {
-  "name": "archive-download",
+  "name": "archive-download-cli",
   "description": "catalog.acrhives.gov image downloader",
   "keywords": ["download"],
   "version": "1.0.0",

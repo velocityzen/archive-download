@@ -4,7 +4,7 @@
 
 Install [Node.js](https://nodejs.org/)
 
-`npm i archive-download -g`
+`npm i archive-download-cli -g`
 
 ## Usage
 
